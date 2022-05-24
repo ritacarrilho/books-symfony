@@ -1,0 +1,26 @@
+{%extends "base.html.twig" %} 
+{% block title %}Page {{ numPage }} {% endblock %}
+
+{% block body %}
+    <h2 class="container">Hello! You are at Page {{ numPage }}</h2>
+    <div class="container row">
+        <div class="col-sm-3">
+            {#<ul><li><a href='{{ path('app_home') }}'>Home</li>   function that calls the good root, even if we change it in the controller
+            <li><a href="{{ path('app_page', { numPage: 1 }) }}">Page 1</a></li>
+            <li><a href="{{ path('app_page', { numPage: 2 }) }}">Page 2</a></li></ul> #}
+            
+            {{ include("front/template_part/_menu.html.twig", { pp: 'page', current: numPage }) }}
+        </div>
+
+       <div class="col-sm-9"> 
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum rem unde explicabo? Mollitia eius saepe beatae non natus sit ab, perferendis corrupti illo amet eaque quo, nihil distinctio! Expedita, assumenda!
+                Architecto adipisci impedit consequatur soluta enim illo nemo vel expedita doloribus dolor ducimus, dignissimos ad veniam qui velit ratione atque ipsam quisquam error, sequi saepe sed provident? Veritatis, consectetur rem.
+                Ducimus ab architecto sapiente veritatis laboriosam! Harum voluptate veritatis vel minima aliquam ipsum consectetur quod, minus voluptas sit aliquid, distinctio perferendis amet ullam reiciendis nisi. Laboriosam placeat repudiandae porro nulla!
+                Voluptatibus perspiciatis enim ipsa, non voluptate sint adipisci nam rerum quas vel, sequi, eum atque sit perferendis! Quos, ducimus, laborum quidem exercitationem debitis perferendis dolorum id sunt expedita rerum nihil?
+                Ea minus veniam earum hic labore ipsa, nobis, dignissimos animi laboriosam eum aliquid, tempore aperiam dolore accusantium perspiciatis consequatur obcaecati vero sed quia aliquam doloremque voluptates atque! Voluptatum, ullam eius?
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

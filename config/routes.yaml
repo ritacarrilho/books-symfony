@@ -1,0 +1,13 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# app_home:
+#   path: /home
+#   controller: App\Controller\HomeController::welcome
+
+# route name, not a key word so we can call it whatever we want
+# app_page: 
+#   path: /page/{numPage}
+#   controller: App\Controller\HomeController::page
+#   methods: GET
