@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      */
     public function welcome() 
     {
-        // call teh render to connect the controller to the view
+        // call the render to connect the controller to the view
         return $this->render( "front/home.html.twig", [] ); // empty array in case is needed to pass parameters
 
         /**return a object type Response (html page) -> request response
