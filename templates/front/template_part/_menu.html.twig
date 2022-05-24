@@ -1,13 +1,13 @@
 <ul class="gap-2 mx-auto">
     {% if pp != "home" %}
         <li  class="list-unstyled">
-            <a href="{{ path('app_home') }}" class="btn btn-outline-primary btn-sm mb-2 btn-block">Home Page</a>
+            <a href="{{ path('app_home') }}" class=" d-md-block btn btn-outline-primary btn-sm mb-2">Home Page</a>
         </li>
     {% endif %}
     {% for num in [1,2,3,4] %}
         {% if num != current %}
             <li  class="list-unstyled">
-                <a href="{{ path('app_page', {numPage: num}) }}" class="btn btn-outline-primary btn-sm mb-2">See page {{ num }} </a>
+                <a href="{{ path('app_page', {numPage: num}) }}" class=" d-md-block btn btn-outline-primary btn-sm mb-2">See page {{ num }} </a>
             </li>
         {% endif %}
     {% endfor %}

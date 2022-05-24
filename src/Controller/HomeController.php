@@ -13,7 +13,6 @@ class HomeController extends AbstractController
      * @Route("/home", name="app_home", methods={"GET", "PUT"})
      * @return Response
      */
-
     public function welcome() 
     {
         // call teh render to connect the controller to the view
@@ -54,7 +53,6 @@ class HomeController extends AbstractController
      * @Route("/page/{numPage}", name="app_page", methods={"GET"})
      * @return Response
      */
-    
     public function page(string $numPage) 
     {
         return $this->render("front/page.html.twig", [
@@ -84,5 +82,21 @@ class HomeController extends AbstractController
                 </body>
             <//html>
         ");*/
+    }
+
+    /**
+     * @Route("/ArticlesList", name="app_list", methods={"GET"})
+     */
+    public function listArticles()
+    {
+        $articles = [
+            ['title' => 'Java\'s Rules', 'comment' => 'Learn all about Java'],
+            ['title' => 'The beauty of C', 'comment' => 'Code C with elegance'],
+            ['title' => 'My beloved Wordpress', 'comment' => 'A special relationshio with Gabriel(s)'],
+        ];
+
+        return $this->render('front/template_part/_listArticles.html.twig', [
+            "articles" => $articles
+        ]);
     }
 }

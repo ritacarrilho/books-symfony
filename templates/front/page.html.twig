@@ -20,6 +20,11 @@
                 Voluptatibus perspiciatis enim ipsa, non voluptate sint adipisci nam rerum quas vel, sequi, eum atque sit perferendis! Quos, ducimus, laborum quidem exercitationem debitis perferendis dolorum id sunt expedita rerum nihil?
                 Ea minus veniam earum hic labore ipsa, nobis, dignissimos animi laboriosam eum aliquid, tempore aperiam dolore accusantium perspiciatis consequatur obcaecati vero sed quia aliquam doloremque voluptates atque! Voluptatum, ullam eius?
             </p>
+            {% if numPage == 1 %}
+            {# {{ render(path('app_list')) }} #}
+            {{ render(controller('App\\Controller\\HomeController::listArticles')) }}
+
+            {% endif %}
         </div>
     </div>
 
