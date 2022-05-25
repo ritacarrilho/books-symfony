@@ -3,12 +3,24 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @var BookRepository
+     */
+    private $bookRepo;
+
+    //injection of BookRepository
+    public function __construct(BookRepository $bookRepository) 
+    { 
+        $this->bookRepo = $bookRepository; // the BookRepository is available in all method of this class
+    }
+
 // DECLARE ROUTES - replaces routes in routes.yml
     /**
      * @Route("/home", name="app_home", methods={"GET", "PUT"})
@@ -106,8 +118,11 @@ class HomeController extends AbstractController
      * @return Response 
      */
     public function bookList() {
-        $books = $this->getDoctrine()->getRepository(Book::class)->findAll(); // doctrine allows to access to getRepository (to get the data)
+        // $books = $this->getDoctrine()->getRepository(Book::class)->findAll(); // doctrine allows to access to getRepository (to get the data)
+        // $books = $bookRepository->findAll(); find method in bookRepository
+        $books = $this->bookRepo->findAll(); // find method in bookRepository with injection
 
+        // dump($books);
         return $this->render("front/books.html.twig", [
             'books' => $books
         ]);
