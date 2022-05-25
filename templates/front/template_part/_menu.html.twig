@@ -4,6 +4,9 @@
             <a href="{{ path('app_home') }}" class=" d-md-block btn btn-outline-primary btn-sm mb-2">Home Page</a>
         </li>
     {% endif %}
+        <li  class="list-unstyled">
+            <a href="{{ path('app_books') }}" class=" d-md-block btn btn-outline-primary btn-sm mb-2">Books</a>
+        </li>
     {% for num in [1,2,3,4] %}
         {% if num != current %}
             <li  class="list-unstyled">

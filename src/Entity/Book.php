@@ -52,6 +52,26 @@ class Book
      */
     private $dateEdition;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbrPage;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $editor;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    private $isbn;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    private $ean;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +157,54 @@ class Book
     public function setDateEdition(\DateTimeInterface $dateEdition): self
     {
         $this->dateEdition = $dateEdition;
+
+        return $this;
+    }
+
+    public function getNbrPage(): ?int
+    {
+        return $this->nbrPage;
+    }
+
+    public function setNbrPage(int $nbrPage): self
+    {
+        $this->nbrPage = $nbrPage;
+
+        return $this;
+    }
+
+    public function getEditor(): ?string
+    {
+        return $this->editor;
+    }
+
+    public function setEditor(string $editor): self
+    {
+        $this->editor = $editor;
+
+        return $this;
+    }
+
+    public function getIsbn(): ?string
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(string $isbn): self
+    {
+        $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    public function getEan(): ?string
+    {
+        return $this->ean;
+    }
+
+    public function setEan(string $ean): self
+    {
+        $this->ean = $ean;
 
         return $this;
     }

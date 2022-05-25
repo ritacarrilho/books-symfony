@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -97,6 +98,18 @@ class HomeController extends AbstractController
 
         return $this->render('front/template_part/_listArticles.html.twig', [
             "articles" => $articles
+        ]);
+    }
+
+    /**
+     * @Route("/books", name="app_books", methods={"GET"})
+     * @return Response 
+     */
+    public function bookList() {
+        $books = $this->getDoctrine()->getRepository(Book::class)->findAll(); // doctrine allows to access to getRepository (to get the data)
+
+        return $this->render("front/books.html.twig", [
+            'books' => $books
         ]);
     }
 }
