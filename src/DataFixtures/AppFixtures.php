@@ -22,7 +22,7 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 30; $i++) { // books genetarion (30)
             $book = new Book();
             $book->setTitle( $faker->sentence(6, true) )
-                ->setAuthor($faker->name)
+                // ->setAuthor($faker->name)
                 ->setGenre($genres[rand(0, count($genres) - 1)])
                 ->setCategory($categories[rand(0, count($categories) - 1)])
                 ->setDateParution($faker->dateTime('2000-01-01'))
