@@ -6,6 +6,7 @@ use App\Entity\Book;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -117,7 +118,8 @@ class HomeController extends AbstractController
      * @Route("/books", name="app_books", methods={"GET"})
      * @return Response 
      */
-    public function bookList() {
+    public function bookList() 
+    {
         // $books = $this->getDoctrine()->getRepository(Book::class)->findAll(); // doctrine allows to access to getRepository (to get the data)
         // $books = $bookRepository->findAll(); find method in bookRepository
         $books = $this->bookRepo->findAll(); // find method in bookRepository with injection
@@ -125,6 +127,23 @@ class HomeController extends AbstractController
         // dump($books);
         return $this->render("front/books.html.twig", [
             'books' => $books
+        ]);
+    }
+
+    /**
+     * @Route("/bookDateFilter", name="app_dateFiltered", methods={"POST"})
+     * @return void 
+     */
+    public function listBookFilter(Request $request) // request allows to recover the parameters passed in the request post
+    {
+
+        $datePost = $request->get('date');
+        dump($datePost);
+        $books = $this->bookRepo->findByPublishUnder($datePost);
+
+
+        return $this->render("front/booksFiltered.html.twig", [
+            "books" => $books
         ]);
     }
 }

@@ -2,13 +2,9 @@
 {% block title %}Books List {% endblock %}
 
 {% block body %}
-    <h2 class="container">Books</h2>
+    <h2 class="container">Books Filtered</h2>
     <div class="container row">
         <div class="col-sm-3">
-            {#<ul><li><a href='{{ path('app_home') }}'>Home</li>   function that calls the good root, even if we change it in the controller
-            <li><a href="{{ path('app_page', { numPage: 1 }) }}">Page 1</a></li>
-            <li><a href="{{ path('app_page', { numPage: 2 }) }}">Page 2</a></li></ul> #}
-            
             {{ include("front/template_part/_menu.html.twig", { pp: 'books', current: 0 }) }}
         </div>
 

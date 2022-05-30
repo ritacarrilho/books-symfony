@@ -39,6 +39,18 @@ class BookRepository extends ServiceEntityRepository
         }
     }
 
+    // request to generate an array 
+    public function findByPublishUnder($date): array
+    {
+        return $this->createQueryBuilder('b')// 'b' = alias of table name
+                    ->where('b.dateParution < :date') // predicate
+                    ->setParameter('date', $date)
+                    ->getQuery()
+                    ->getResult();
+    }
+
+    // "filter" request that returns all books where the release date is inferior to a certain date
+
 //    /**
 //     * @return Book[] Returns an array of Book objects
 //     */
