@@ -24,21 +24,6 @@ class Book
      */
     private $title;
 
-    // /**
-    //  * @ORM\Column(type="string", length=255)
-    //  */
-    // private $author;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $genre;
-
-    /**
-     * @ORM\Column(type="string", length=150)
-     */
-    private $category;
-
     /**
      * @ORM\Column(type="text")
      */
@@ -79,9 +64,20 @@ class Book
      */
     private $author;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="books")
+     */
+    private $genre;
+
     public function __construct()
     {
         $this->author = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,41 +97,6 @@ class Book
         return $this;
     }
 
-    // public function getAuthor(): ?string
-    // {
-    //     return $this->author;
-    // }
-
-    // public function setAuthor(string $author): self
-    // {
-    //     $this->author = $author;
-
-    //     return $this;
-    // }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
 
     public function getSynopsis(): ?string
     {
@@ -243,5 +204,54 @@ class Book
         $this->author->removeElement($author);
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getCategoryName(): ?string 
+    {
+        $res = '';
+        $categories = $this->getCategory();
+
+        for($i = 0; $i < count($categories); $i++) {
+            $res .= $categories[$i]->getLabel();
+            $res .= ($i < count($categories) - 1) ? (', ') : ('');
+        }
+
+        return $res;
     }
 }

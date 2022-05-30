@@ -116,7 +116,13 @@ class Author
     * function to return full name
     *  @return string
     */ 
-    public function getFullName(): string {
+    public function getFullName(): string 
+    {
         return $this->getFirstName(). " " . $this->getLastName();
+    }
+
+    public function getBirthFormat() 
+    {
+        return $this->getBirthDate()->format('l, d F Y');
     }
 }
