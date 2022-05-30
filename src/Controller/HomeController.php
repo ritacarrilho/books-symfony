@@ -122,9 +122,11 @@ class HomeController extends AbstractController
     {
         // $books = $this->getDoctrine()->getRepository(Book::class)->findAll(); // doctrine allows to access to getRepository (to get the data)
         // $books = $bookRepository->findAll(); find method in bookRepository
-        $books = $this->bookRepo->findAll(); // find method in bookRepository with injection
+        // $books = $this->bookRepo->findAll();  find method in bookRepository with injection
 
+        $books = $this->bookRepo->findAllOptimise();
         // dump($books);
+
         return $this->render("front/books.html.twig", [
             'books' => $books
         ]);

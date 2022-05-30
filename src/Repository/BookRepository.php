@@ -49,6 +49,19 @@ class BookRepository extends ServiceEntityRepository
                     ->getResult();
     }
 
+    public function findAllOptimise()
+    {
+        return $this->createQueryBuilder('b')
+                    ->leftJoin('b.author', 'a')
+                    ->addSelect('a' )
+                    ->leftJoin('b.genre', 'g')
+                    ->addSelect('g')
+                    ->leftJoin('b.category', 'c')
+                    ->addSelect('c')
+                    ->orderBy('b.dateEdition', 'desc')
+                    ->getQuery()->getResult();
+    }
+
     // "filter" request that returns all books where the release date is inferior to a certain date
 
 //    /**
