@@ -111,4 +111,12 @@ class Author
 
         return $this;
     }
+
+   /**
+    * function to return full name
+    *  @return string
+    */ 
+    public function getFullName(): string {
+        return $this->getFirstName(). " " . $this->getLastName();
+    }
 }

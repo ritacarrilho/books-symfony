@@ -75,7 +75,7 @@ class Book
     private $ean;
 
     /**
-     * @ORM\ManyToMany(targetEntity=author::class, inversedBy="books")
+     * @ORM\ManyToMany(targetEntity=Author::class, inversedBy="books")
      */
     private $author;
 

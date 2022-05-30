@@ -19,9 +19,13 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ book.title }}</h4>
                     <div class="card-text">
-                        <p><strong>Author : </strong>{{ book.author }}</p>
+                        <p><strong>Author : </strong>
+                            {% for author in book.author %}
+                                {{ author.getFullName }}<br> 
+                            {% endfor %}
+                        </p>
                         <p><strong>ISBN : </strong>{{ book.isbn }}</p>
-                        <p><strong>Synopsis : </strong>{{ book.synopsis }}</p>
+                        <p><strong>Synopsis : </strong>{{ book.synopsis | excerpt }}</p>
                     </div>
                 </div>
             </div>
