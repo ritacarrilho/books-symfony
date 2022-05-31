@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authors List {% endblock %}
+
+
+{% block body %}
+    <h2 class="container">
+        <span class="float-end">
+            <a href="{{ path("app_newAuthor") }}" class="btn btn-success btn-sm">Add</a>
+        </span>
+        List of Authors
+    </h2>
+    <div class="container">
+        <ul class="list-group">
+            {% for author in authors %}
+            <li class="list-group-item">{{ author.fullName }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+{% endblock %}
