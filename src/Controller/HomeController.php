@@ -124,7 +124,7 @@ class HomeController extends AbstractController
         // $books = $bookRepository->findAll(); find method in bookRepository
         // $books = $this->bookRepo->findAll();  find method in bookRepository with injection
 
-        $books = $this->bookRepo->findAllOptimise();
+        $books = $this->bookRepo->findAllBooks();
         // dump($books);
 
         return $this->render("front/books.html.twig", [
@@ -140,7 +140,7 @@ class HomeController extends AbstractController
     {
 
         $datePost = $request->get('date');
-        dump($datePost);
+        // dump($datePost);
         $books = $this->bookRepo->findByPublishUnder($datePost);
 
 

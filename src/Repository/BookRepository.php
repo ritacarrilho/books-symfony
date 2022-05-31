@@ -42,14 +42,16 @@ class BookRepository extends ServiceEntityRepository
     // request to generate an array 
     public function findByPublishUnder($date): array
     {
-        return $this->createQueryBuilder('b')// 'b' = alias of table name
-                    ->where('b.dateParution < :date') // predicate
+        $db = $this->findAllOptimise();
+
+        // return $this->createQueryBuilder('b') 'b' = alias of table name
+        return $db->where('b.dateParution < :date') // predicate
                     ->setParameter('date', $date)
                     ->getQuery()
                     ->getResult();
     }
 
-    public function findAllOptimise()
+    private function findAllOptimise()
     {
         return $this->createQueryBuilder('b')
                     ->leftJoin('b.author', 'a')
@@ -58,9 +60,18 @@ class BookRepository extends ServiceEntityRepository
                     ->addSelect('g')
                     ->leftJoin('b.category', 'c')
                     ->addSelect('c')
-                    ->orderBy('b.dateEdition', 'desc')
-                    ->getQuery()->getResult();
+                    ->orderBy('b.dateEdition', 'desc');
+                    // ->getQuery()->getResult();
     }
+
+    public function findAllBooks() // function to get the optimized request
+    { 
+        $db = $this->findAllOptimise();
+        return $db->getQuery()->getResult();
+    }
+
+
+
 
     // "filter" request that returns all books where the release date is inferior to a certain date
 
