@@ -7,7 +7,14 @@
         <h2>Formulary Page</h2>
         <div>
             {{ form_start(form) }}
-            {{ form_rest(form)}}
+                <div class="row">
+                    <div class="col-sm-6">{{ form_row(form.lastName) }}</div>
+                    <div class="col-sm-6">{{ form_row(form.firstName) }}</div>
+                </div>
+            {{ form_rest(form)}} {# form_rest displays the rest of the fields not personalized after form_start #}
+                <div class="row text-center">
+                    <button type="submit" class="btn btn-primary btn-sm"> Save</button>
+                </div>
             {{ form_end(form)}}
         </div>
     </div>
