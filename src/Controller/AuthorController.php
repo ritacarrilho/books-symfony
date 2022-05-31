@@ -34,6 +34,7 @@ class AuthorController extends AbstractController
 
     /**
      * @Route("/addAuthor/{id}", name="app_newAuthor", methods={"GET", "POST"}, requirements={"id": "\d+"})
+     * @param int $id
      * @return void
      */
     public function addAuthor(int $id = -1, Request $request, ManagerRegistry $manager) // method get recovers the form click and the method post recovers the form submition | id = -1 in case there is no id passed
@@ -47,6 +48,9 @@ class AuthorController extends AbstractController
             $em = $manager->getManager(); // entity manager
             $em->persist($author);
             $em->flush();
+
+            $this->addFlash('success', 'You have added a new author.');
+
             return $this->redirectToRoute("app_author"); // redirect to list of authors page
         }
 
@@ -56,11 +60,26 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/deleteAuthor/{id}", name="app_deleteAuthor", methods={"GET", "POST"}, requirements={"id": "\d+"})
+     * @Route("/deleteAuthor/{id}", name="app_deleteAuthor", methods={"POST"}, requirements={"id": "\d+"})
+     * @param int $id
      * @return void
      */
-    public function deleteAuthor(int $id = -1, Request $request, ManagerRegistry $manager) // method get recovers the form click and the method post recovers the form submition | id = -1 in case there is no id passed
+    public function deleteAuthor(int $id = -1, Request $request, ManagerRegistry $managerRegistry) // method get recovers the form click and the method post recovers the form submition | id = -1 in case there is no id passed
     { 
-        
+        // verify if token is valid
+        if($this->isCsrfTokenValid('delete'.$id, $request->get('_token'))) {
+            $em = $managerRegistry->getManager();
+
+            $author = $this->authorRepo->find($id);
+
+            $em->remove($author);
+            $em->flush();
+            $this->addFlash('success', 'You have deleted the author.');
+
+            return $this->redirectToRoute("app_author");
+
+        } else {
+            return new Response("<h1>Wrong request !</h1>");
+        }
     }
 }

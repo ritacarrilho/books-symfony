@@ -11,16 +11,24 @@
         List of Authors
     </h2>
     <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="row d-flex flex-row justify-content mb-2">
+                <div class="alert alert-success">{{ message }}</div>
+            </div>
+        {% endfor %}
         <ul class="list-group">
             {% for author in authors %}
             <li class="list-group-item">   
-                <span class="float-end"> {# make a button for each author #}
+                <span class="float-end d-flex flex-row justify-content-between"> 
+                    {# make a edit button for each author #}
                     <a href="{{ path("app_newAuthor", {id: author.id}) }}" class="btn btn-outline-warning btn-sm">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a href="{{ path("app_deleteAuthor", {id: author.id}) }}" class="btn btn-outline-danger btn-sm">
-                        <i class="fa-solid fa-trash"></i>
-                    </a>
+                    {# make a delete button for each author #}
+                    <form action="{{ path("app_deleteAuthor", {id: author.id}) }}" method="post" onsubmit="return confirm('Are you sure ?')" class="ms-2">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete'~author.id) }}">
+                        <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                    </form>
                 </span>
             {{ author.fullName }}
             </li>
