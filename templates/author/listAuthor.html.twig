@@ -13,7 +13,17 @@
     <div class="container">
         <ul class="list-group">
             {% for author in authors %}
-            <li class="list-group-item">{{ author.fullName }}</li>
+            <li class="list-group-item">   
+                <span class="float-end"> {# make a button for each author #}
+                    <a href="{{ path("app_newAuthor", {id: author.id}) }}" class="btn btn-outline-warning btn-sm">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a href="{{ path("app_deleteAuthor", {id: author.id}) }}" class="btn btn-outline-danger btn-sm">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </span>
+            {{ author.fullName }}
+            </li>
             {% endfor %}
         </ul>
     </div>

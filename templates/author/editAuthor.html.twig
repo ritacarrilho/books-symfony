@@ -8,8 +8,8 @@
         <div>
             {{ form_start(form) }}
                 <div class="row">
-                    <div class="col-sm-6">{{ form_row(form.lastName) }}</div>
                     <div class="col-sm-6">{{ form_row(form.firstName) }}</div>
+                    <div class="col-sm-6">{{ form_row(form.lastName) }}</div>
                 </div>
             {{ form_rest(form)}} {# form_rest displays the rest of the fields not personalized after form_start #}
                 <div class="row text-center">
