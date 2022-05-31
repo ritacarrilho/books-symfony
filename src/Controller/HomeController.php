@@ -143,9 +143,21 @@ class HomeController extends AbstractController
         // dump($datePost);
         $books = $this->bookRepo->findByPublishUnder($datePost);
 
-
         return $this->render("front/booksFiltered.html.twig", [
             "books" => $books
+        ]);
+    }
+
+    /**
+     * @Route("/latestBooks", name="app_latest", methods={"GET"})
+     * @return void 
+     */
+    public function latestBooks() // request allows to recover the parameters passed in the request post
+    {
+        $books = $this->bookRepo->findLatest();
+
+        return $this->render("front/latestBooks.html.twig", [
+            'books' => $books,
         ]);
     }
 }

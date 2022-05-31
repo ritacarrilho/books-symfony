@@ -10,41 +10,22 @@
 
        <div class="col-sm-9"> 
 
-            <div class="row mb-4">
-                <form action="{{ path("app_dateFiltered") }}" method="post">
+            <div class="row d-flex flex-column justify-content-between mb-2">
+                <form action="{{ path("app_dateFiltered") }}" method="post"  class="col-sm-3"> 
                     <div class="group-form mb-2">                    
                         <label for="date" class=> Date inferior to :</label>
                         <input type="date" name="date" class="form-control">
-                    </div>
-                    <input type="submit" value="search" class="btn btn-sm btn-primary">
+                    </div class="mb-2">
+                    <input type="submit" value="Search" class="btn btn-sm btn-primary mb-2">
                 </form>
+                <div class="col-sm-3">
+                    <a href="{{ path("app_latest") }}" class="btn btn-sm btn-primary">Latest 5</a>
+                </div>
+
             </div>
 
-            <div class="row d-flex flex-row justify-content-between">
-            {% for book in books %}
-            <div class="card mb-2 d-inline-block" style="width:30%">
-                <div class="card-body">
-                    <h4 class="card-title">{{ book.title }}</h4>
-                    <div class="card-text">
-                        <p><strong>Author : </strong>
-                            {% set i = 1 %}
-                            {% for author in book.author %}
-                                {{ author.getFullName }} (born at: {{ author.birthFormat}})
-                                {% if i < book.author|length %} 
-                                    , 
-                                {% endif %} 
-                                {% set i = i + 1 %}
-                            {% endfor %}
-                        </p>
-                        <p><strong>ISBN : </strong>{{ book.isbn }}</p>
-                        <p><strong>Genre : </strong>{{ book.genre.name }}</p>
-                        <strong>Category : </strong>{{ book.getCategoryName }}
-                        <p><strong>Synopsis : </strong>{{ book.synopsis | excerpt }}</p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            </div>
+            {{ include("front/template_part/booksTemplate.html.twig", { books: books }) }}
+           
         </div>
     </div>
 

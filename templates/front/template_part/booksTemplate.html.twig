@@ -1,0 +1,25 @@
+<div class="row d-flex flex-row justify-content-between">
+    {% for book in books %}
+    <div class="card mb-2 d-inline-block" style="width:30%">
+        <div class="card-body">
+            <h4 class="card-title">{{ book.title }}</h4>
+            <div class="card-text">
+             <p><strong>Author : </strong>
+                {% set i = 1 %}
+                    {% for author in book.author %}
+                        {{ author.getFullName }} (born at: {{ author.birthFormat}})
+                        {% if i < book.author|length %} 
+                                    , 
+                            {% endif %} 
+                            {% set i = i + 1 %}
+                        {% endfor %}
+                </p>
+                <p><strong>ISBN : </strong>{{ book.isbn }}</p>
+                <p><strong>Genre : </strong>{{ book.genre.name }}</p>
+                <strong>Category : </strong>{{ book.getCategoryName }}
+                <p><strong>Synopsis : </strong>{{ book.synopsis | excerpt }}</p>
+            </div>
+        </div>
+     </div>
+    {% endfor %}
+</div>

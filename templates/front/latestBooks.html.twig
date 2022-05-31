@@ -1,34 +1,28 @@
 {%extends "base.html.twig" %} 
-{% block title %}Books List {% endblock %}
+{% block title %}Latest Books{% endblock %}
 
 {% block body %}
-    <h2 class="container">Books</h2>
+    <h2 class="container">Books Filtered</h2>
     <div class="container row">
         <div class="col-sm-3">
-            {#<ul><li><a href='{{ path('app_home') }}'>Home</li>   function that calls the good root, even if we change it in the controller
-            <li><a href="{{ path('app_page', { numPage: 1 }) }}">Page 1</a></li>
-            <li><a href="{{ path('app_page', { numPage: 2 }) }}">Page 2</a></li></ul> #}
-            
             {{ include("front/template_part/_menu.html.twig", { pp: 'books', current: 0 }) }}
         </div>
 
        <div class="col-sm-9"> 
 
             <div class="row d-flex flex-column justify-content-between mb-2">
-                <form action="{{ path("app_dateFiltered") }}" method="post" class="col-sm-3">
+                <form action="{{ path("app_dateFiltered") }}" method="post"  class="col-sm-3"> 
                     <div class="group-form mb-2">                    
                         <label for="date" class=> Date inferior to :</label>
                         <input type="date" name="date" class="form-control">
-                    </div>
+                    </div class="mb-2">
                     <input type="submit" value="Search" class="btn btn-sm btn-primary mb-2">
                 </form>
                 <div class="col-sm-3">
                     <a href="{{ path("app_latest") }}" class="btn btn-sm btn-primary">Latest 5</a>
                 </div>
             </div>
-        
-        {{ include("front/template_part/booksTemplate.html.twig", { books: books }) }}
+          {{ include("front/template_part/booksTemplate.html.twig", { books: books }) }}
         </div>
     </div>
-
 {% endblock %}
