@@ -175,4 +175,13 @@ class HomeController extends AbstractController
             'form' => $b_form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/login", name="app_login")
+     * @return void 
+     */
+    public function logIn() // user login
+    { 
+        return $this->render("front/form/login.html.twig");
+    }
 }
