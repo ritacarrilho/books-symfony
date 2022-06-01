@@ -6,12 +6,24 @@ use App\Entity\Book;
 use App\Entity\Author;
 use App\Entity\Category;
 use App\Entity\Genre;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    /**
+     * @var
+     */
+    private $pass_hasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->pass_hasher = $passwordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
@@ -22,7 +34,25 @@ class AppFixtures extends Fixture
 
         $faker = Faker\Factory::create('fr_FR'); // Factory => object to create data
 
-        // genre traitment
+        //generate USER type admin
+        $userOne = new User();
+        $userOne->setFirstName("Alexander")
+                ->setLastName("Thegreat")
+                ->setEmail("alexander@thegreat.gk")
+                ->setRole("ROLE_ADMIN")
+                ->setPassword($this->pass_hasher->hashPassword($userOne, "admin"));
+        $manager->persist( $userOne);
+        
+        //generate USER type admin
+        $userTwo = new User();
+        $userTwo->setFirstName("Khan")
+                ->setLastName("Gengis")
+                ->setEmail("atila@lehun.com")
+                ->setRole("ROLE_ADMIN")
+                ->setPassword($this->pass_hasher->hashPassword($userTwo, "admin"));
+        $manager->persist( $userTwo);
+                
+        // GENRE traitment
         foreach($genres as $kg => $genre) {
             $gn = new Genre(); // instanciate a new genre object
             $gn->setName($genre); // add a name thou setter method
@@ -32,7 +62,7 @@ class AppFixtures extends Fixture
             $this->addReference('genre-'. $kg, $gn); // add genre reference to pass to method addGenre in book object
         }
 
-        // category traitment
+        // CATEGORY traitment
         foreach($categories as $kc => $category) {
             $cat = new Category();
             $isornot = ($category == 'epub') ? (true) : (false) ;
@@ -42,7 +72,7 @@ class AppFixtures extends Fixture
             $this->addReference('cat-'.$kc, $cat);
         }
 
-        // author traitment
+        // AUTHOR traitment
         for($i=0; $i < 15; $i++) { // object Author creation - random generation of 15 authors
             $author = new Author();
             $author->setLastName( $faker->lastName )
@@ -55,7 +85,7 @@ class AppFixtures extends Fixture
             $this->addReference('author-' . $i, $author); // key => value array ex author[$i] = $author['firstName', 'lastName', birthDate]
         }  
 
-        // books traitment
+        // BOOKS traitment
         for($i = 0; $i < 30; $i++) { // books genetarion (30)
             $book = new Book();
             $book->setTitle( $faker->sentence(6, true) )

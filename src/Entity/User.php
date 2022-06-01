@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @method string getUserIdentifier()
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -20,7 +22,7 @@ class User
     /**
      * @ORM\Column(type="string", length=150)
      */
-    private $lasName;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=200)
@@ -47,14 +49,14 @@ class User
         return $this->id;
     }
 
-    public function getLasName(): ?string
+    public function getLastName(): ?string
     {
-        return $this->lasName;
+        return $this->lastName;
     }
 
-    public function setLasName(string $lasName): self
+    public function setLastName(string $lastName): self
     {
-        $this->lasName = $lasName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -105,5 +107,45 @@ class User
         $this->role = $role;
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return [$this->getRole()]; // returns an array with the role of the entity
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+    // TODO: Implement eraseCredentials() method. 
+    }
+
+    public function getUsername()
+    {
+        return $this->getEmail;
+    }
+
+    public function __call($name, $arguments)
+    {
+    // TODO: Implement @method string getUserIdentifier() }
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->getId(),
+            $this->getEmail(),
+            $this->getPassword()
+        ]);
+    }
+
+    public function unserialize($data)
+    { // recovers the serielized data in serialize()
+        list($this->id, $this->email, $this->password) = 
+            unserialize($data, ['allowed_classes' => false]);
     }
 }

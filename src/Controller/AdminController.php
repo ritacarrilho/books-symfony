@@ -17,4 +17,12 @@ class AdminController extends AbstractController
         return $this->render("admin/dashboard.html.twig", []);
     }
 
+    /**
+     * @Route("/logout", name="app_logout", methods={"GET"})
+     * @return void
+     */
+    public function logout()
+    {
+        return $this->redirectToRoute("app_home");
+    }
 }
