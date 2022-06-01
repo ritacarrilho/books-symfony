@@ -39,6 +39,11 @@ class AuthorRepository extends ServiceEntityRepository
         }
     }
 
+    public function orderLabel() {
+        return $this->createQueryBuilder('a')
+                    ->orderBy('a.firstName', 'ASC');
+    }
+
 //    /**
 //     * @return Author[] Returns an array of Author objects
 //     */

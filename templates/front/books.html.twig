@@ -2,7 +2,9 @@
 {% block title %}Books List {% endblock %}
 
 {% block body %}
-    <h2 class="container">Books</h2>
+    <h2 class="container">Books 
+        <span class="float-end"><a href="{{ path('app_addBook') }}" class="bnt btn-success btn-sm">Add</a></span>
+    </h2>
     <div class="container row">
         <div class="col-sm-3">
             {#<ul><li><a href='{{ path('app_home') }}'>Home</li>   function that calls the good root, even if we change it in the controller
@@ -25,6 +27,7 @@
                 <div class="col-sm-3">
                     <a href="{{ path("app_latest") }}" class="btn btn-sm btn-primary">Latest 5</a>
                 </div>
+
             </div>
         
         {{ include("front/template_part/booksTemplate.html.twig", { books: books }) }}

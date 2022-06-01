@@ -6,8 +6,12 @@ use App\Repository\BookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert; // allows to make a constraint to a propriety
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
+ * @UniqueEntity("title")
+ * @UniqueEntity("isbn")
  * @ORM\Entity(repositoryClass=BookRepository::class)
  */
 class Book
@@ -20,6 +24,11 @@ class Book
     private $id;
 
     /**
+     * @Assert\Length(
+     *      min="4",
+     *      minMessage="It's required a minimum of 4 letters."
+     * )
+     * 
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -40,11 +49,21 @@ class Book
     private $dateEdition;
 
     /**
+     * @Assert\Regex(
+     *      pattern="/\d/",
+     *      match = true
+     * )
+     * 
      * @ORM\Column(type="integer")
      */
     private $nbrPage;
 
     /**
+     * @Assert\Regex(
+     *      pattern="/\d/",
+     *      match = false
+     * )
+     * 
      * @ORM\Column(type="string", length=255)
      */
     private $editor;

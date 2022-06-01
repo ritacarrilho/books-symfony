@@ -3,19 +3,25 @@
 {% block title %} Form {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h2>Formulary Page</h2>
-        <div>
+    
+        <h2 class="container">Formulary Page</h2>
+        <div class="container row">
+            <div class="col-sm-3">
+                {{ include("front/template_part/_menu.html.twig", { pp: 'author', current: 0 }) }}
+            </div>
+       
+            <div class="col-sm-9">
             {{ form_start(form) }}
-                <div class="row">
-                    <div class="col-sm-6">{{ form_row(form.firstName) }}</div>
-                    <div class="col-sm-6">{{ form_row(form.lastName) }}</div>
-                </div>
+
+                <div class="col-sm-6">{{ form_row(form.firstName) }}</div>
+                <div class="col-sm-6">{{ form_row(form.lastName) }}</div>
+            
             {{ form_rest(form)}} {# form_rest displays the rest of the fields not personalized after form_start #}
-                <div class="row text-center">
-                    <button type="submit" class="btn btn-primary btn-sm"> Save</button>
-                </div>
+            <div class="row text-center">
+                <button type="submit" class="btn btn-primary btn-sm"> Save</button>
+            </div>
             {{ form_end(form)}}
+            </div>
         </div>
-    </div>
+
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Form\BookType;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class HomeController extends AbstractController
 
 // DECLARE ROUTES - replaces routes in routes.yml
     /**
-     * @Route("/home", name="app_home", methods={"GET", "PUT"})
+     * @Route("/", name="app_home", methods={"GET", "PUT"})
      * @return Response
      */
     public function welcome() 
@@ -158,6 +159,20 @@ class HomeController extends AbstractController
 
         return $this->render("front/latestBooks.html.twig", [
             'books' => $books,
+        ]);
+    }
+
+    /**
+     * @Route("/addBook", name="app_addBook", methods={"GET", "POST"})
+     * @return void 
+     */
+    public function addBook() // request allows to recover the parameters passed in the request post
+    {
+        $book = new Book;
+        $b_form = $this->createForm(BookType::class, $book);
+
+        return $this->render("front/form/bookForm.html.twig", [
+            'form' => $b_form->createView(),
         ]);
     }
 }
