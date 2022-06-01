@@ -9,9 +9,15 @@
             <a href="{{ path('app_books') }}" class=" d-md-block btn btn-outline-primary btn-sm mb-2">Books</a>
         </li>
     {% endif %}
-        {% if pp != "authors" %}
+    {% if pp != "author" %}
         <li  class="list-unstyled">
         <a href="{{ path('app_author') }}" class=" d-md-block btn btn-outline-primary btn-sm mb-2">Authors</a>
+    </li>
+    {% endif %}
+
+    {% if pp != "admin" %}
+        <li  class="list-unstyled">
+        <a href="{{ path('app_dashboard') }}" class=" d-md-block btn btn-outline-primary btn-sm mb-2">Administration</a>
     </li>
     {% endif %}
     {% for num in [1,2,3,4] %}

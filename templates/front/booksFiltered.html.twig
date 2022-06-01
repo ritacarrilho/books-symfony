@@ -2,31 +2,32 @@
 {% block title %}Books List {% endblock %}
 
 {% block body %}
-    <h2 class="container">Books Filtered</h2>
-    <div class="container row">
-        <div class="col-sm-3">
-            {{ include("front/template_part/_menu.html.twig", { pp: 'books', current: 0 }) }}
-        </div>
-
-       <div class="col-sm-9"> 
-
-            <div class="row d-flex flex-column justify-content-between mb-2">
-                <form action="{{ path("app_dateFiltered") }}" method="post"  class="col-sm-3"> 
-                    <div class="group-form mb-2">                    
-                        <label for="date" class=> Date inferior to :</label>
-                        <input type="date" name="date" class="form-control">
-                    </div class="mb-2">
-                    <input type="submit" value="Search" class="btn btn-sm btn-primary mb-2">
-                </form>
-                <div class="col-sm-3">
-                    <a href="{{ path("app_latest") }}" class="btn btn-sm btn-primary">Latest 5</a>
-                </div>
-
+    <div class="container mt-3">
+        <h2>Books Filtered</h2>
+        <div class="row">
+            <div class="col-sm-3">
+                {{ include("front/template_part/_menu.html.twig", { pp: 'books', current: 0 }) }}
             </div>
 
-            {{ include("front/template_part/booksTemplate.html.twig", { books: books }) }}
-           
+        <div class="col-sm-9"> 
+
+                <div class="row d-flex flex-column justify-content-between mb-2">
+                    <form action="{{ path("app_dateFiltered") }}" method="post"  class="col-sm-3"> 
+                        <div class="group-form mb-2">                    
+                            <label for="date" class=> Date inferior to :</label>
+                            <input type="date" name="date" class="form-control">
+                        </div class="mb-2">
+                        <input type="submit" value="Search" class="btn btn-sm btn-primary mb-2">
+                    </form>
+                    <div class="col-sm-3">
+                        <a href="{{ path("app_latest") }}" class="btn btn-sm btn-primary">Latest 5</a>
+                    </div>
+
+                </div>
+
+                {{ include("front/template_part/booksTemplate.html.twig", { books: books }) }}
+            
+            </div>
         </div>
     </div>
-
 {% endblock %}

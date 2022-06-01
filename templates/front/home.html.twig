@@ -2,29 +2,30 @@
 {% block title %}Page Name{% endblock %}
 
 {% block body %}
-    <h2 class="container">Hello! We are at the Home Page</h2>
+    <div class="container mt-3">
+        <h2>Hello! We are at the Home Page</h2>
 
-    <div class="container row">
-        <div class="col-sm-3">
-            {# <ul>
-                <li><a href="{{ path('app_page', { numPage: 1 }) }}">Page 1</a></li>
-                <li><a href="{{ path('app_page', { numPage: 2 }) }}">Page 2</a></li>
-            </ul> #}
-            {{ include("front/template_part/_menu.html.twig", { pp: 'home', current: 0 } )}}
+        <div class="row">
+            <div class="col-sm-3">
+                {# <ul>
+                    <li><a href="{{ path('app_page', { numPage: 1 }) }}">Page 1</a></li>
+                    <li><a href="{{ path('app_page', { numPage: 2 }) }}">Page 2</a></li>
+                </ul> #}
+                {{ include("front/template_part/_menu.html.twig", { pp: 'home', current: 0 } )}}
+            </div>
+
+        <div class="col-sm-9"> 
+            {# date #}
+            {{ '2022-05-24' | format_date( locale='fr' ) }}
+            {# image #}
+            <img src="{{ asset("images/default-image.jpg") }}" alt="A cute cat" width="100%">
+                <p>
+                    {{ "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum rem unde explicabo? Mollitia eius saepe beatae non natus sit ab, perferendis corrupti illo amet eaque quo, nihil distinctio. Expedita, assumenda! Architecto adipisci impedit consequatur soluta enim illo nemo vel expedita doloribus dolor ducimus, dignissimos ad veniam qui velit ratione atque ipsam quisquam error, sequi saepe sed provident? Veritatis, consectetur rem. Ducimus ab architecto sapiente veritatis laboriosam! Harum voluptate veritatis vel minima aliquam ipsum consectetur quod, minus voluptas sit aliquid, distinctio perferendis amet ullam reiciendis nisi. Laboriosam placeat repudiandae porro nulla! Voluptatibus perspiciatis enim ipsa, non voluptate sint adipisci nam rerum quas vel, sequi, eum atque sit perferendis! Quos, ducimus, laborum quidem exercitationem debitis perferendis dolorum id sunt expedita rerum nihil? Ea minus veniam earum hic labore ipsa, nobis, dignissimos animi laboriosam eum aliquid, tempore aperiam dolore accusantium perspiciatis consequatur obcaecati vero sed quia aliquam doloremque voluptates atque! Voluptatum, ullam eius?" | formatLetter("s") }}
+                </p>
+                <p>
+                    {{ "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum rem unde explicabo? Mollitia eius saepe beatae non natus sit ab, perferendis corrupti illo amet eaque quo, nihil distinctio. Expedita, assumenda! Architecto adipisci impedit consequatur soluta enim illo nemo vel expedita doloribus dolor ducimus, dignissimos ad veniam qui velit ratione atque ipsam quisquam error, sequi saepe sed provident? Veritatis, consectetur rem. Ducimus ab architecto sapiente veritatis laboriosam! Harum voluptate veritatis vel minima aliquam ipsum consectetur quod, minus voluptas sit aliquid, distinctio perferendis amet ullam reiciendis nisi. Laboriosam placeat repudiandae porro nulla! Voluptatibus perspiciatis enim ipsa, non voluptate sint adipisci nam rerum quas vel, sequi, eum atque sit perferendis! Quos, ducimus, laborum quidem exercitationem debitis perferendis dolorum id sunt expedita rerum nihil? Ea minus veniam earum hic labore ipsa, nobis, dignissimos animi laboriosam eum aliquid, tempore aperiam dolore accusantium perspiciatis consequatur obcaecati vero sed quia aliquam doloremque voluptates atque! Voluptatum, ullam eius?" | excerpt(100, "++++") }}
+                </p>
         </div>
-
-       <div class="col-sm-9"> 
-           {# date #}
-           {{ '2022-05-24' | format_date( locale='fr' ) }}
-           {# image #}
-           <img src="{{ asset("images/default-image.jpg") }}" alt="A cute cat" width="100%">
-            <p>
-                {{ "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum rem unde explicabo? Mollitia eius saepe beatae non natus sit ab, perferendis corrupti illo amet eaque quo, nihil distinctio. Expedita, assumenda! Architecto adipisci impedit consequatur soluta enim illo nemo vel expedita doloribus dolor ducimus, dignissimos ad veniam qui velit ratione atque ipsam quisquam error, sequi saepe sed provident? Veritatis, consectetur rem. Ducimus ab architecto sapiente veritatis laboriosam! Harum voluptate veritatis vel minima aliquam ipsum consectetur quod, minus voluptas sit aliquid, distinctio perferendis amet ullam reiciendis nisi. Laboriosam placeat repudiandae porro nulla! Voluptatibus perspiciatis enim ipsa, non voluptate sint adipisci nam rerum quas vel, sequi, eum atque sit perferendis! Quos, ducimus, laborum quidem exercitationem debitis perferendis dolorum id sunt expedita rerum nihil? Ea minus veniam earum hic labore ipsa, nobis, dignissimos animi laboriosam eum aliquid, tempore aperiam dolore accusantium perspiciatis consequatur obcaecati vero sed quia aliquam doloremque voluptates atque! Voluptatum, ullam eius?" | formatLetter("s") }}
-            </p>
-            <p>
-                {{ "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum rem unde explicabo? Mollitia eius saepe beatae non natus sit ab, perferendis corrupti illo amet eaque quo, nihil distinctio. Expedita, assumenda! Architecto adipisci impedit consequatur soluta enim illo nemo vel expedita doloribus dolor ducimus, dignissimos ad veniam qui velit ratione atque ipsam quisquam error, sequi saepe sed provident? Veritatis, consectetur rem. Ducimus ab architecto sapiente veritatis laboriosam! Harum voluptate veritatis vel minima aliquam ipsum consectetur quod, minus voluptas sit aliquid, distinctio perferendis amet ullam reiciendis nisi. Laboriosam placeat repudiandae porro nulla! Voluptatibus perspiciatis enim ipsa, non voluptate sint adipisci nam rerum quas vel, sequi, eum atque sit perferendis! Quos, ducimus, laborum quidem exercitationem debitis perferendis dolorum id sunt expedita rerum nihil? Ea minus veniam earum hic labore ipsa, nobis, dignissimos animi laboriosam eum aliquid, tempore aperiam dolore accusantium perspiciatis consequatur obcaecati vero sed quia aliquam doloremque voluptates atque! Voluptatum, ullam eius?" | excerpt(100, "++++") }}
-            </p>
-       </div>
+        </div>
     </div>
-    
 {% endblock %}
