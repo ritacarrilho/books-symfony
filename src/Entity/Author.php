@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=AuthorRepository::class)
- * Vich\Uploadable()
+ * @Vich\Uploadable
  */
 class Author
 {
@@ -168,7 +168,7 @@ class Author
     {
         $this->imageFile = $imageFile;
 
-        if($this->getImageFile instanceof UploadedFile) {
+        if($this->getImageFile() instanceof UploadedFile) {
             $this->updatedAt = new \DateTime('now');
         }
         return $this;
