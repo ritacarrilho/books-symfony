@@ -18,7 +18,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="app_logout", methods={"GET"})
+     * @Route("/logout", name="app_logout")
      * @return void
      */
     public function logout()

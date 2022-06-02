@@ -126,7 +126,7 @@ class User implements UserInterface, \Serializable
 
     public function getUsername()
     {
-        return $this->getEmail;
+        return $this->getEmail();
     }
 
     public function __call($name, $arguments)

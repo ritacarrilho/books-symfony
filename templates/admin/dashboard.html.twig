@@ -4,9 +4,11 @@
 
 {% block body %}
     <div class="container mt-3">
-        <h2>Administration Page</h2>
+        <h2>Admin Page</h2>
 
-        
-        
+        <div class="row">
+            <div class="col-sm-3">
+                {{ include("front/template_part/_menu.html.twig", { pp: 'home', current: 0 } )}}
+            </div>
     </div> 
 {% endblock %}

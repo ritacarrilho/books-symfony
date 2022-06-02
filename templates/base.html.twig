@@ -21,8 +21,17 @@
 
     </head>
     <body>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <span class="float-end">
+            <a href="{{ path("app_logout") }}" class="btn btn-sm btn-primary">
+            {{ app.user.lastName}}
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </span> 
+    {% endif %}
+
         {% block body %}{% endblock %}        
-        
+
         {% block javascripts %}
             <script
                 src="https://code.jquery.com/jquery-3.6.0.min.js" 

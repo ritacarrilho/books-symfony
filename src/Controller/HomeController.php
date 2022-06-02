@@ -6,6 +6,7 @@ use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -180,8 +181,15 @@ class HomeController extends AbstractController
      * @Route("/login", name="app_login")
      * @return void 
      */
-    public function logIn() // user login
+    public function login(AuthenticationUtils $authenticationUtils) // user login
     { 
-        return $this->render("front/form/login.html.twig");
+        $error = $authenticationUtils->getLastAuthenticationError();
+    
+        $lastIdent = $authenticationUtils->getLastUsername();
+
+        return $this->render("front/form/login.html.twig", [
+            'lastIdent' => $lastIdent,
+            'error' => $error
+        ]);
     }
 }
