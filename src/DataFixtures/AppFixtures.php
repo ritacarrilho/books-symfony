@@ -77,6 +77,8 @@ class AppFixtures extends Fixture
             $author = new Author();
             $author->setLastName( $faker->lastName )
                     ->setFirstName( $faker->firstName )
+                    ->setFilename( "default.jpg" )
+                    ->setUpdatedAt( $faker->dateTime("now") )
                     ->setBirthDate( $faker->dateTime(2004-01-01) ); 
 
             $manager->persist( $author);  // save the data into a generic array (ORM system) - virtual double of the object created in memory before save into DB

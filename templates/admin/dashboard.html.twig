@@ -8,7 +8,14 @@
 
         <div class="row">
             <div class="col-sm-3">
-                {{ include("front/template_part/_menu.html.twig", { pp: 'home', current: 0 } )}}
+                {{ include("front/template_part/_menu.html.twig", { pp: 'dashboard', current: 0 } )}}
             </div>
+
+            <div class="col-sm-9">
+                <h3>Welcome {{ app.user.firstName }} {{ app.user.lastName }}!</h3>
+                <p>This page is only available to registered users.</p>
+                <p>Here you can find nothing because we have not completed this view.</p>
+            </div>
+        </div>
     </div> 
 {% endblock %}
