@@ -27,7 +27,11 @@
                         <li class="list-group-item">   
                             <span class="float-end d-flex flex-row justify-content-between"> 
                                 {# make a edit button for each author #}
-                                <a href="{{ path("app_newAuthor", {id: author.id}) }}" class="btn btn-outline-warning btn-sm">
+                                <a href="{{ path("app_newAuthor", {id: author.id}) }}" 
+                                    class="btn btn-outline-warning btn-sm"
+                                    data-bs-toggle = "tooltip"
+                                    data-bs-placement = "top"
+                                    title="{{ author.fullname }}">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 {# make a delete button for each author #}
